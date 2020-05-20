@@ -30,15 +30,11 @@ Before sending any pull request, please discuss requirements/changes to be imple
 
 4.2. Before running the project, make sure that you downloaded all dependencies.
 
-4.2.1. Run "npm install" at nchoise_admin folder to download dependencies for backend.
+4.2.1. Run "npm install" at nchoise_admin/admin folder to download dependencies for admin portal.
 
-4.2.2. Run "npm install" at nchoise_admin/admin folder to download dependencies for admin portal.
+4.3. Run "npm start" at nchoise_admin/admin folder to run admin portal aplication at http://localhost:3000/.
 
-4.3. Run "npm start" at nchoise_admin folder to run backend of the aplication.
-
-4.4. Run "npm start" at nchoise_admin/admin folder to run admin portal aplication at http://localhost:3000/.
-
-4.5. Run "npm run cypress" at nchoise_admin/admin folder to run end-to-end tests.
+4.4. Run "npm run cypress" at nchoise_admin/admin folder to run end-to-end tests.
 
 # 5. Project Deploy
 
