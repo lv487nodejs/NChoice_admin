@@ -10,7 +10,7 @@ import { useStyles } from './Product-add-item-propetries-style';
 
 const ADD_BUTTON_LABEL = 'ADD SIZE';
 const REMOVE_BUTTON_LABEL = 'REMOVE SIZE';
-const propsKeys = ['size', 'available', 'sku'];
+const propsKeys = ['size', 'available'];
 
 const AddProductPropetries = ({ setSizeModel, setProductModel, sizeModel, productModel }) => {
     const classes = useStyles();
@@ -37,7 +37,12 @@ const AddProductPropetries = ({ setSizeModel, setProductModel, sizeModel, produc
         });
     };
 
-    const propetryTextFields = Object.keys(sizeModel).map(name => (
+    const setSKU = (product, size) => {
+        sizeModel.sku = `${product.catalog[0]}-${product.title.padEnd(5, '0').slice(0,5)}-${product.category.slice(0, 2)}-${product.color.padEnd(5,'0').slice(0,5)}-${size.size.padStart(2,'0')}`.toUpperCase()
+        return sizeModel.sku
+    }
+ 
+    const propetryTextFields = propsKeys.map(name => (
         <ProductAddPropetriesItem key={name} name={name} handleInputChange={handleInputChange} />
     ));
 
@@ -49,6 +54,12 @@ const AddProductPropetries = ({ setSizeModel, setProductModel, sizeModel, produc
                     key={item[key]}
                 >{`${key}: ${item[key]}`}</Typography>
             ))}
+            <Typography
+                    className={classes.propsText}
+                    key='sku'
+                >{`${'sku'.toUpperCase()}: ${
+                    setSKU(productModel, sizeModel)
+                    }`}</Typography>
             <StandardButton
                 size="small"
                 color="secondary"
