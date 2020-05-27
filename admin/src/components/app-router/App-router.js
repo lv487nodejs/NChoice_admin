@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 import {
     StatsPageContainer,
+    NewsPageContainer,
     ProductsPageContainer,
     UsersPageContainer,
     UserDetailsPageContainer,
@@ -38,6 +39,7 @@ const AppRouter = () => (
             <Route path={routes.pathToUsers} exact component={UsersPageContainer} />
             <Route path={routes.pathToUserDetails} exact component={UserDetailsPageContainer} />
             <Route path={routes.pathToProductDetails} exact component={ProductDetailsPage} />
+            <Route path={routes.pathToNews} exact component={NewsPageContainer} />
             <Route path={routes.pathToBrands} exact component={BrandsPageContainer} />
             <Route path={routes.pathToCategories} exact component={CategoriesPageContainer} />
             <Route path={routes.pathToCategoryDetails} exact component={CategoryDetailsPageContainer} />

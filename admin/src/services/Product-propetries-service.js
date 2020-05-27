@@ -1,7 +1,7 @@
 import AdminService from './Admin-service';
 import { config } from '../config';
 
-import { categoriesService, catalogsService, brandsService, colorsService } from './index';
+import { categoriesService, catalogsService, brandsService, colorsService, } from './index';
 
 const { productLabels } = config.product;
 

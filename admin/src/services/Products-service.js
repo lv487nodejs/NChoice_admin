@@ -22,6 +22,11 @@ class ProductsService extends AdminService {
         return propetries;
     };
 
+    getAllNews = async () => {
+        const news = await this.getResource('news');
+        return news;
+    };
+
     getProductsByFilter = async (currentpage, postsperpage, filters, search) => {
         let queryString = `${productsPath}?currentpage=${currentpage}&postsperpage=${postsperpage}`;
         const { brand, color, category, catalog } = filters;
