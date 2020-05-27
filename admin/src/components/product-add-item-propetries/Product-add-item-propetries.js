@@ -37,8 +37,18 @@ const AddProductPropetries = ({ setSizeModel, setProductModel, sizeModel, produc
         });
     };
 
+    //Form uniquce codes foe each part of SKU
+    const formSKU = (product, size) => {
+        const catalogCode = product.catalog[0] 
+        const titleCode = product.title.padEnd(5, '0').slice(0,5)
+        const categoryCode = product.category.slice(0, 2)
+        const colorCode = product.color.padEnd(5,'0').slice(0,5)
+        const sizeCode = size.size.padStart(2,'0')
+        return `${catalogCode}-${titleCode}-${categoryCode}-${colorCode}-${sizeCode}`.toUpperCase()
+    }
+
     const setSKU = (product, size) => {
-        sizeModel.sku = `${product.catalog[0]}-${product.title.padEnd(5, '0').slice(0,5)}-${product.category.slice(0, 2)}-${product.color.padEnd(5,'0').slice(0,5)}-${size.size.padStart(2,'0')}`.toUpperCase()
+        sizeModel.sku = formSKU(product, size)
         return sizeModel.sku
     }
  
