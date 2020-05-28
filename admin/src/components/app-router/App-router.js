@@ -19,6 +19,7 @@ import { config } from '../../config';
 import ProductAddPage from '../product-add-page';
 import CategoryAddPage from '../category-add-page';
 import BrandAddPage from '../brand-add-page';
+import NewsAddPage from '../news-add-page';
 import BrandDetails from '../brand-details';
 
 import DialogWindow from '../dialog-window';
@@ -46,6 +47,7 @@ const AppRouter = () => (
             <Route path={routes.pathToAddCategory} exact component={CategoryAddPage} />
             <Route path={routes.pathToAddProduct} exact component={ProductAddPage} />
             <Route path={routes.pathToAddBrand} exact component={BrandAddPage} />
+            <Route path={routes.pathToAddNews} exact component={NewsAddPage} />
             <Route path={routes.pathToBrandDetails} exact component={BrandDetails} />
             <Route path={routes.pathToLogin} exact component={LoginPageContainer} />
             <Redirect to={routes.pathToOrders} />

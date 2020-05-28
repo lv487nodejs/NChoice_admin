@@ -18,6 +18,7 @@ const BrandAddPage = props => {
         setSnackBarSeverity,
         setSnackBarMessage,
     } = props;
+
     const { brandsService } = adminService;
 
     const [brandName, setBrandName] = useState('');
@@ -39,6 +40,8 @@ const BrandAddPage = props => {
     const brandNameHandler = e => {
         setBrandName(e.target.value);
     };
+
+
 
     return (
         <form onSubmit={brandSaveHandler}>

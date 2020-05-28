@@ -3,6 +3,11 @@ const setNews = newNews => ({
     payload: newNews,
 });
 
+const setNewsItem = newNewsItem => ({
+    type: 'SET_NEWS_ITEM',
+    payload: newNewsItem,
+})
+
 const newsLoadingStatus = () => ({
     type: 'LOADING_STATUS',
 });

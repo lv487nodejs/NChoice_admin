@@ -3,6 +3,18 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import wrapWithAdminService from '../wrappers';
+import {
+    setBrands,
+    brandLoadingStatus,
+    setSnackBarStatus,
+    setSnackBarSeverity,
+    setSnackBarMessage,
+    setDialogStatus,
+    setDialogTitle,
+    setDialogContent,
+    setButtonTitle,
+    setEventHandler,
+} from '../../actions';
 
 import {
     setNews,
@@ -17,14 +29,27 @@ import TableContainerGenerator from '../table-container-generator/Table-containe
 import { config } from '../../config';
 
 const tableTitles = config.tableHeadRowTitles.news;
+const pathToNewsAddPage = '/newsadd';
 
+const REMOVE_TITLE = 'Remove brand';
+const REMOVE_MESSAGE = 'Are you sure you want to remove brand?';
+const SUCCESS_STATUS = 'success';
 
 const TestList = ({
     news,
     adminService,
     loading,
     setNews,
-    newsLoadingStatus
+    newsLoadingStatus,
+    history,
+    setSnackBarStatus,
+    setSnackBarSeverity,
+    setSnackBarMessage,
+    setDialogStatus,
+    setDialogTitle,
+    setDialogContent,
+    setButtonTitle,
+    setEventHandler,
 }) => {
     const { newsService } = adminService;
 
@@ -35,12 +60,35 @@ const TestList = ({
         newsService.getAllNews().then(res => setNews(res));
     }, [newsService, setNews, newsLoadingStatus]);
 
-    const newsItems = news.map((news, index) => (
+    const openSuccessSnackbar = eventHandler => {
+        setDialogTitle(REMOVE_TITLE);
+        setDialogContent(REMOVE_MESSAGE);
+        setButtonTitle(REMOVE_TITLE);
+        setEventHandler(eventHandler);
+        setDialogStatus(true);
+    };
+
+    const newsDeleteHandler = id => async () => {
+        const removeNews = async () => {
+            const res = await newsService.deleteNewsItem(id);
+            setDialogStatus(false);
+            setSnackBarMessage(res);
+            setSnackBarSeverity(SUCCESS_STATUS);
+            setSnackBarStatus(true);
+            newsLoadingStatus();
+            const newNewsItems = await newsService.getAllNews();
+            setNews(newNewsItems);
+        };
+        openSuccessSnackbar(removeNews);
+    };
+
+    const newsItems = news.map((newsItem, index) => (
         <TableContainerRow
             key={index}
-            id={news._id}
-            author={news.author}
-            title={news.title}
+            id={newsItem._id}
+            author={newsItem.author}
+            title={newsItem.title}
+            deleteHandler={newsDeleteHandler(newsItem._id)}
         />
     ));
 
@@ -54,6 +102,7 @@ const TestList = ({
                 <Button
                     id="add-news"
                     component={Link}
+                    to={pathToNewsAddPage}
                     variant="contained"
                     color="primary"
                 >
@@ -73,6 +122,14 @@ const mapStateToProps = ({ newsState: { news, loading } }) => ({
 const mapDispatchToProps = {
     setNews,
     newsLoadingStatus,
+    setSnackBarStatus,
+    setSnackBarSeverity,
+    setSnackBarMessage,
+    setDialogStatus,
+    setDialogTitle,
+    setDialogContent,
+    setButtonTitle,
+    setEventHandler,
 };
 
 export default wrapWithAdminService()(

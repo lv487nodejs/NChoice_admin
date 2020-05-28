@@ -1,5 +1,6 @@
 const initialState = {
     news: [],
+    newsItem: '',
     loading: true,
 };
 
@@ -15,6 +16,13 @@ const newsState = (state = initialState, action) => {
             return {
                 ...state,
                 news: action.payload,
+                loading: false,
+            };
+
+        case 'SET_NEWS_ITEM':
+            return {
+                ...state,
+                newsItem: action.payload,
                 loading: false,
             };
 
