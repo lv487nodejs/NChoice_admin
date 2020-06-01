@@ -4,8 +4,6 @@ import { withRouter, Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import wrapWithAdminService from '../wrappers';
 import {
-    setBrands,
-    brandLoadingStatus,
     setSnackBarStatus,
     setSnackBarSeverity,
     setSnackBarMessage,
@@ -31,8 +29,8 @@ import { config } from '../../config';
 const tableTitles = config.tableHeadRowTitles.news;
 const pathToNewsAddPage = '/newsadd';
 
-const REMOVE_TITLE = 'Remove brand';
-const REMOVE_MESSAGE = 'Are you sure you want to remove brand?';
+const REMOVE_TITLE = 'Remove news';
+const REMOVE_MESSAGE = 'Are you sure you want to remove this item?';
 const SUCCESS_STATUS = 'success';
 
 const TestList = ({

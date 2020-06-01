@@ -23,7 +23,6 @@ const NewsAddPage = props => {
 
     const [author, setAuthor] = useState('');
     const [authorPhoto, setAuthorPhoto] = useState('');
-    const [date, setDate] = useState('');
     const [newsImage, setNewsImage] = useState('');
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
@@ -33,7 +32,6 @@ const NewsAddPage = props => {
         const newNewsItem = {
             author: e.target.author.value,
             authorPhoto: e.target.authorPhoto.value,
-            date: e.target.date.value,
             newsImage: e.target.newsImage.value,
             text: e.target.text.value,
             title: e.target.title.value
@@ -45,7 +43,6 @@ const NewsAddPage = props => {
         setSnackBarStatus(true);
         setAuthor('');
         setAuthorPhoto('');
-        setDate('');
         setNewsImage('');
         setText('');
         setTitle('');
@@ -57,9 +54,6 @@ const NewsAddPage = props => {
     };
     const authorPhotoHandler = e => {
         setAuthorPhoto(e.target.value);
-    };
-    const dateHandler = e => {
-        setDate(e.target.value);
     };
     const newsImageHandler = e => {
         setNewsImage(e.target.value);
@@ -92,15 +86,6 @@ const NewsAddPage = props => {
                         label="Author Photo"
                         value={authorPhoto}
                         onChange={authorPhotoHandler}
-                        required
-                    />
-                    <TextField
-                        id="date"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="date"
-                        value={date}
-                        onChange={dateHandler}
                         required
                     />
                     <TextField
