@@ -1,6 +1,7 @@
 import React, { useEffect, useCallback } from 'react';
 import moment from 'moment';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 
 import {
     Menu,
@@ -35,6 +36,7 @@ const tableTitles = ['Order ID', 'Customer', 'Date', 'Status'];
 const DATE_FORMAT = 'DD MMM YYYY';
 const TABLE_TITLE = 'Latest Orders';
 const ORDER_STATUSES = ['pending', 'canceled', 'delivered'];
+const PATH_TO_ORDER = id => `/order/${id}`;
 
 const SUCCESS_MSG = (name, status) => `Order ${name} status updated to ${status}`;
 const SUCCESS = 'success';
@@ -45,6 +47,7 @@ const LatestOrders = ({
     orders,
     loading,
     adminService,
+    history,
     setOrders,
     ordersLoadingStatus,
     setSnackBarStatus,
@@ -123,6 +126,10 @@ const LatestOrders = ({
 
     const tableHeaders = tableTitles.map(title => <TableCell key={title}>{title}</TableCell>);
 
+    const handleOrder = (id) => {
+        history.push(PATH_TO_ORDER(id))
+    }
+
     const tableRows = orders.map(order => {
         if(!order.userId) {
             order.userId = {
@@ -130,8 +137,9 @@ const LatestOrders = ({
             };
         }
         return (
+        
         <TableRow hover key={order._id}>
-            <TableCell>{order._id}</TableCell>
+            <TableCell onClick={() => handleOrder(order._id)}>{order._id}</TableCell>
             <TableCell>{order.userId.email}</TableCell>
             <TableCell>{moment(order.date).format(DATE_FORMAT)}</TableCell>
             <TableCell>
@@ -145,6 +153,7 @@ const LatestOrders = ({
                 </div>
             </TableCell>
         </TableRow>
+        
     )});
 
     return (
@@ -164,7 +173,7 @@ const LatestOrders = ({
             <Divider />
         </Card>
     );
-};
+}; 
 
 const mapStateToProps = ({ ordersState: { orders, loading } }) => ({
     orders,
@@ -178,4 +187,4 @@ const mapDispatchToProps = {
     setSnackBarMessage,
 };
 
-export default wrapWithAdminService()(connect(mapStateToProps, mapDispatchToProps)(LatestOrders));
+export default wrapWithAdminService()(connect(mapStateToProps, mapDispatchToProps)(withRouter(LatestOrders)));

@@ -18,6 +18,7 @@ const routes = {
     pathToUsers: '/users',
     pathToUserDetails: '/user/:id',
     pathToLogin: '/login',
+    pathToOrderDetails: '/order/:id',
 };
 
 export const config = {
