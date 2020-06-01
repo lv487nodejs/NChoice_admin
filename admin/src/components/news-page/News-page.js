@@ -86,6 +86,9 @@ const TestList = ({
             id={newsItem._id}
             author={newsItem.author}
             title={newsItem.title}
+            editHandler={() => {
+                history.push(`/news/${newsItem._id}`);
+            }}
             deleteHandler={newsDeleteHandler(newsItem._id)}
         />
     ));

@@ -2,7 +2,7 @@ export { setCatalog, setCatalogs, catalogLoadingStatus } from './Catalogs-action
 
 export { setBrand, setBrands, brandLoadingStatus } from './Brand-actions';
 
-export { setNews, newsLoadingStatus } from './News-actions';
+export { setNews, newsLoadingStatus, setNewsItem } from './News-actions';
 
 export { setAdmin } from './Auth-actions';
 

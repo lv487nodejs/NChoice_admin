@@ -12,7 +12,7 @@ const newsLoadingStatus = () => ({
     type: 'LOADING_STATUS',
 });
 
-export { setNews, newsLoadingStatus };
+export { setNews, setNewsItem, newsLoadingStatus };
 
 
 

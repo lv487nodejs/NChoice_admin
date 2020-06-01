@@ -16,6 +16,7 @@ const routes = {
     pathToBrands: '/brands',
     pathToNews: '/news',
     pathToBrandDetails: '/brand/:id',
+    pathToNewsDetails: '/news/:id',
     pathToAddBrand: '/brandadd',
     pathToAddNews: '/newsadd',
     pathToUsers: '/users',

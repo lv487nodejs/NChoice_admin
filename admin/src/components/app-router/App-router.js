@@ -21,6 +21,7 @@ import CategoryAddPage from '../category-add-page';
 import BrandAddPage from '../brand-add-page';
 import NewsAddPage from '../news-add-page';
 import BrandDetails from '../brand-details';
+import NewsDetails from '../news-details';
 
 import DialogWindow from '../dialog-window';
 import SnackbarItem from '../snackbar-item';
@@ -49,6 +50,7 @@ const AppRouter = () => (
             <Route path={routes.pathToAddBrand} exact component={BrandAddPage} />
             <Route path={routes.pathToAddNews} exact component={NewsAddPage} />
             <Route path={routes.pathToBrandDetails} exact component={BrandDetails} />
+            <Route path={routes.pathToNewsDetails} exact component={NewsDetails} />
             <Route path={routes.pathToLogin} exact component={LoginPageContainer} />
             <Redirect to={routes.pathToOrders} />
         </Switch>

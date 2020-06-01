@@ -64,6 +64,7 @@ const BrandList = ({
         setEventHandler(eventHandler);
         setDialogStatus(true);
     };
+
     const brandDeleteHandler = id => async () => {
         const removeBrand = async () => {
             const res = await brandsService.deleteBrand(id);
