@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles(theme => ({
-    brandEdit: {
+    brandAdd: {
         display: 'flex',
         flexDirection: 'column',
         margin: theme.spacing(2),
@@ -11,6 +11,6 @@ export const useStyles = makeStyles(theme => ({
     textfield: {
         textTransform: 'uppercase',
         margin: 10,
-        width: 300,
+        width: 400,
     },
 }));

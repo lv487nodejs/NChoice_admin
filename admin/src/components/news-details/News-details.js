@@ -14,8 +14,16 @@ import {
 } from '../../actions';
 
 const NewsDetails = props => {
+
     const classes = useStyles();
-    const [newsAuthor, setNewsAuthor] = useState('');
+
+    const [author, setAuthor] = useState('');
+    const [authorPhoto, setAuthorPhoto] = useState('');
+    const [newsImage, setNewsImage] = useState('');
+    const [newsVideo, setNewsVideo] = useState('');
+    const [text, setText] = useState('');
+    const [title, setTitle] = useState('');
+
     const {
         adminService,
         setSnackBarStatus,
@@ -26,46 +34,119 @@ const NewsDetails = props => {
         match,
         history,
     } = props;
+
     const { id } = match.params;
     const { newsService } = adminService;
 
     useEffect(() => {
         newsService.getNewsItemById(id).then(res => {
-            console.log(res.author)
             setNewsItem(res);
-            setNewsAuthor(res.author);
+            setAuthor(res.author);
+            setAuthorPhoto(res.authorPhoto);
+            setNewsImage(res.newsImage);
+            setNewsVideo(res.newsVideo);
+            setText(res.text);
+            setTitle(res.title);
         });
     }, [newsService, id, setNewsItem]);
 
-    const brandSaveHandler = async e => {
+    const newsSaveHandler = async e => {
         e.preventDefault();
+
         const newNewsItem = { ...newsItem };
-        newNewsItem.author = newsAuthor;
-        console.log(newNewsItem)
+
+        newNewsItem.author = author;
+        newNewsItem.authorPhoto = authorPhoto;
+        newNewsItem.newsImage = newsImage;
+        newNewsItem.newsVideo = newsVideo;
+        newNewsItem.text = text;
+        newNewsItem.title = title;
+
         await newsService.putNewsItem(newNewsItem);
 
         setSnackBarSeverity('success');
-        setSnackBarMessage(`Brand succesfully edited!`);
+        setSnackBarMessage(`'${title}' succesfully edited!`);
         setSnackBarStatus(true);
         history.push(`/news`);
     };
-    const changeHandler = e => {
-        setNewsAuthor(e.target.value);
+
+    const authorHandler = e => {
+        setAuthor(e.target.value);
+    };
+    const authorPhotoHandler = e => {
+        setAuthorPhoto(e.target.value);
+    };
+    const newsImageHandler = e => {
+        setNewsImage(e.target.value);
+    };
+
+    const newsVideoHandler = e => {
+        setNewsVideo(e.target.value);
+    }
+    const textHandler = e => {
+        setText(e.target.value);
+    };
+    const titleHandler = e => {
+        setTitle(e.target.value);
     };
 
     return (
-        <form onSubmit={brandSaveHandler}>
-            <Paper className={classes.brandEdit}>
+        <form onSubmit={newsSaveHandler}>
+            <Paper className={classes.brandAdd}>
                 <TextField
-                    id="authorName"
+                    id="author"
                     className={classes.textfield}
                     variant="outlined"
                     label="Author"
-                    value={newsAuthor}
-                    onChange={changeHandler}
+                    value={author}
+                    onChange={authorHandler}
                     required
                 />
-                <SaveButton type="submit" title="Save" />
+                <TextField
+                    id="authorPhoto"
+                    className={classes.textfield}
+                    variant="outlined"
+                    label="Avatar name"
+                    value={authorPhoto}
+                    onChange={authorPhotoHandler}
+                    required
+                />
+                <TextField
+                    id="newsImage"
+                    className={classes.textfield}
+                    variant="outlined"
+                    label="Image name"
+                    value={newsImage}
+                    onChange={newsImageHandler}
+                />
+                <TextField
+                    id="newsVideo"
+                    className={classes.textfield}
+                    variant="outlined"
+                    label="Video link"
+                    value={newsVideo}
+                    onChange={newsVideoHandler}
+                />
+                <TextField
+                    id="title"
+                    className={classes.textfield}
+                    variant="outlined"
+                    label="Title"
+                    value={title}
+                    onChange={titleHandler}
+                    required
+                />
+                <TextField
+                    id="text"
+                    className={classes.textfield}
+                    variant="outlined"
+                    label="text"
+                    multiline
+                    value={text}
+                    onChange={textHandler}
+                    required
+                />
+                <SaveButton id="save" type="submit" title="Save" />
             </Paper>
         </form>
     );

@@ -24,6 +24,7 @@ const NewsAddPage = props => {
     const [author, setAuthor] = useState('');
     const [authorPhoto, setAuthorPhoto] = useState('');
     const [newsImage, setNewsImage] = useState('');
+    const [newsVideo, setNewsVideo] = useState('');
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
 
@@ -33,6 +34,7 @@ const NewsAddPage = props => {
             author: e.target.author.value,
             authorPhoto: e.target.authorPhoto.value,
             newsImage: e.target.newsImage.value,
+            newsVideo: e.target.newsVideo.value,
             text: e.target.text.value,
             title: e.target.title.value
         };
@@ -44,6 +46,7 @@ const NewsAddPage = props => {
         setAuthor('');
         setAuthorPhoto('');
         setNewsImage('');
+        setNewsVideo('');
         setText('');
         setTitle('');
         history.push(`/news`);
@@ -58,6 +61,9 @@ const NewsAddPage = props => {
     const newsImageHandler = e => {
         setNewsImage(e.target.value);
     };
+    const newsVideoHandler = e => {
+        setNewsVideo(e.target.value);
+    }
     const textHandler = e => {
         setText(e.target.value);
     };
@@ -74,7 +80,7 @@ const NewsAddPage = props => {
                         id="author"
                         className={classes.textfield}
                         variant="outlined"
-                        label="author"
+                        label="Author"
                         value={author}
                         onChange={authorHandler}
                         required
@@ -83,7 +89,7 @@ const NewsAddPage = props => {
                         id="authorPhoto"
                         className={classes.textfield}
                         variant="outlined"
-                        label="Author Photo"
+                        label="Avatar name"
                         value={authorPhoto}
                         onChange={authorPhotoHandler}
                         required
@@ -92,9 +98,25 @@ const NewsAddPage = props => {
                         id="newsImage"
                         className={classes.textfield}
                         variant="outlined"
-                        label="News Image"
+                        label="Image name"
                         value={newsImage}
                         onChange={newsImageHandler}
+                    />
+                    <TextField
+                        id="newsVideo"
+                        className={classes.textfield}
+                        variant="outlined"
+                        label="Video link"
+                        value={newsVideo}
+                        onChange={newsVideoHandler}
+                    />
+                    <TextField
+                        id="title"
+                        className={classes.textfield}
+                        variant="outlined"
+                        label="Title"
+                        value={title}
+                        onChange={titleHandler}
                         required
                     />
                     <TextField
@@ -102,17 +124,9 @@ const NewsAddPage = props => {
                         className={classes.textfield}
                         variant="outlined"
                         label="text"
+                        multiline
                         value={text}
                         onChange={textHandler}
-                        required
-                    />
-                    <TextField
-                        id="title"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="title"
-                        value={title}
-                        onChange={titleHandler}
                         required
                     />
                     <SaveButton id="save" type="submit" title="Save" />

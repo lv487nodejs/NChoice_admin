@@ -79,7 +79,7 @@ const TestList = ({
         };
         openSuccessSnackbar(removeNews);
     };
-
+    console.log(news)
     const newsItems = news.map((newsItem, index) => (
         <TableContainerRow
             key={index}

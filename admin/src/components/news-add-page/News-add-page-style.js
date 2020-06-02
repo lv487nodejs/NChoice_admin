@@ -11,6 +11,6 @@ export const useStyles = makeStyles(theme => ({
     textfield: {
         textTransform: 'uppercase',
         margin: 10,
-        width: 300,
+        width: 400,
     },
 }));
