@@ -41,8 +41,6 @@ const BrandAddPage = props => {
         setBrandName(e.target.value);
     };
 
-
-
     return (
         <form onSubmit={brandSaveHandler}>
             <FormControl>
