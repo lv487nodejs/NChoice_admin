@@ -1,25 +1,25 @@
 const initialState = {
-    searchValue: '',
-    searchTerm: '',
+  searchValue: '',
+  searchTerm: ''
 };
 
 const searchState = (state = initialState, action) => {
-    switch (action.type) {
-        case 'SET_SEARCH_VALUE':
-            return {
-                ...state,
-                searchValue: action.payload,
-            };
+  switch (action.type) {
+    case 'SET_SEARCH_VALUE':
+      return {
+        ...state,
+        searchValue: action.payload
+      };
 
-        case 'SET_SEARCH_TERM':
-            return {
-                ...state,
-                searchTerm: action.payload,
-            };
+    case 'SET_SEARCH_TERM':
+      return {
+        ...state,
+        searchTerm: action.payload
+      };
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default searchState;

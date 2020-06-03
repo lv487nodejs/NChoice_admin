@@ -5,18 +5,18 @@ import { Typography } from '@material-ui/core';
 import wrapWithAdminService from '../wrappers';
 
 import {
-    setProducts,
-    setProductLoadingStatus,
-    setPagesCount,
-    setDialogStatus,
-    setDialogTitle,
-    setDialogContent,
-    setButtonTitle,
-    setEventHandler,
-    setSnackBarStatus,
-    setSnackBarSeverity,
-    setSnackBarMessage,
-    setDrawerStatus,
+  setProducts,
+  setProductLoadingStatus,
+  setPagesCount,
+  setDialogStatus,
+  setDialogTitle,
+  setDialogContent,
+  setButtonTitle,
+  setEventHandler,
+  setSnackBarStatus,
+  setSnackBarSeverity,
+  setSnackBarMessage,
+  setDrawerStatus
 } from '../../actions';
 
 import LoadingBar from '../loading-bar';
@@ -34,152 +34,152 @@ const PATH_TO_PRODUCT = id => `/product/${id}`;
 const noProductsText = 'No products were found matching your selection.';
 
 const ProductList = ({
-    adminService,
-    products,
-    filters,
-    searchTerm,
+  adminService,
+  products,
+  filters,
+  searchTerm,
+  setProducts,
+  loading,
+  history,
+  currentPage,
+  rowsPerPage,
+  setPagesCount,
+  setDialogStatus,
+  setDialogTitle,
+  setDialogContent,
+  setButtonTitle,
+  setEventHandler,
+  setSnackBarStatus,
+  setSnackBarSeverity,
+  setSnackBarMessage,
+  setProductLoadingStatus,
+  setDrawerStatus
+}) => {
+  const { productsService } = adminService;
+
+  const getProducts = useCallback(() => {
+    setProductLoadingStatus();
+    productsService
+      .getProductsByFilter(currentPage, rowsPerPage, filters, searchTerm)
+      .then(res => {
+        if (res) {
+          setProducts(res.products);
+          setPagesCount(res.foundProductsNumber);
+          return;
+        }
+
+        setProducts([]);
+        setPagesCount(0);
+      });
+  }, [
+    productsService,
     setProducts,
-    loading,
-    history,
+    setPagesCount,
+    setProductLoadingStatus,
     currentPage,
     rowsPerPage,
-    setPagesCount,
-    setDialogStatus,
-    setDialogTitle,
-    setDialogContent,
-    setButtonTitle,
-    setEventHandler,
-    setSnackBarStatus,
-    setSnackBarSeverity,
-    setSnackBarMessage,
-    setProductLoadingStatus,
-    setDrawerStatus,
-}) => {
-    const { productsService } = adminService;
+    filters,
+    searchTerm
+  ]);
 
-    const getProducts = useCallback(() => {
-        setProductLoadingStatus();
-        productsService
-            .getProductsByFilter(currentPage, rowsPerPage, filters, searchTerm)
-            .then(res => {
-                if (res) {
-                    setProducts(res.products);
-                    setPagesCount(res.foundProductsNumber);
-                    return;
-                }
+  useEffect(() => {
+    setDrawerStatus(false);
+    getProducts();
+  }, [getProducts, setDrawerStatus]);
 
-                setProducts([]);
-                setPagesCount(0);
-            });
-    }, [
-        productsService,
-        setProducts,
-        setPagesCount,
-        setProductLoadingStatus,
-        currentPage,
-        rowsPerPage,
-        filters,
-        searchTerm,
-    ]);
+  if (loading) {
+    return <LoadingBar />;
+  }
 
-    useEffect(() => {
-        setDrawerStatus(false);
-        getProducts();
-    }, [getProducts, setDrawerStatus]);
+  const editHandler = productId => () => {
+    history.push(PATH_TO_PRODUCT(productId));
+  };
 
-    if (loading) {
-        return <LoadingBar />;
-    }
+  const openDialogWindow = eventHandler => {
+    setDialogTitle(REMOVE_TITLE);
+    setDialogContent(REMOVE_MESSAGE);
+    setButtonTitle(REMOVE_TITLE);
+    setEventHandler(eventHandler);
+    setDialogStatus(true);
+  };
 
-    const editHandler = productId => () => {
-        history.push(PATH_TO_PRODUCT(productId));
+  const removeHandler = productId => () => {
+    const removeProduct = async () => {
+      const res = await productsService.removeProduct(productId);
+      getProducts();
+      setDialogStatus(false);
+      setSnackBarMessage(res);
+      setSnackBarSeverity(SUCCESS_STATUS);
+      setSnackBarStatus(true);
     };
 
-    const openDialogWindow = eventHandler => {
-        setDialogTitle(REMOVE_TITLE);
-        setDialogContent(REMOVE_MESSAGE);
-        setButtonTitle(REMOVE_TITLE);
-        setEventHandler(eventHandler);
-        setDialogStatus(true);
-    };
+    openDialogWindow(removeProduct);
+  };
 
-    const removeHandler = productId => () => {
-        const removeProduct = async () => {
-            const res = await productsService.removeProduct(productId);
-            getProducts();
-            setDialogStatus(false);
-            setSnackBarMessage(res);
-            setSnackBarSeverity(SUCCESS_STATUS);
-            setSnackBarStatus(true);
-        };
+  const productItems = products.map((product, index) => (
+    <TableContainerRow
+      key={index}
+      id={product.id}
+      catalog={product.catalog}
+      category={product.category}
+      brand={product.brand}
+      title={product.title}
+      mrsp={product.mrsp}
+      price={product.price}
+      editHandler={editHandler(product.id)}
+      deleteHandler={removeHandler(product.id)}
+    />
+  ));
 
-        openDialogWindow(removeProduct);
-    };
+  const productTable = (
+    <TableContainerGenerator
+      id='productTable'
+      tableTitles={tableTitles}
+      tableItems={productItems}
+      pagination
+    />
+  );
 
-    const productItems = products.map((product, index) => (
-        <TableContainerRow
-            key={index}
-            id={product.id}
-            catalog={product.catalog}
-            category={product.category}
-            brand={product.brand}
-            title={product.title}
-            mrsp={product.mrsp}
-            price={product.price}
-            editHandler={editHandler(product.id)}
-            deleteHandler={removeHandler(product.id)}
-        />
-    ));
-
-    const productTable = (
-        <TableContainerGenerator
-            id="productTable"
-            tableTitles={tableTitles}
-            tableItems={productItems}
-            pagination
-        />
+  if (!products.length) {
+    return (
+      <Typography id='noProducts' variant='h4' component='h2'>
+        {noProductsText}
+      </Typography>
     );
+  }
 
-    if (!products.length) {
-        return (
-            <Typography id="noProducts" variant="h4" component="h2">
-                {noProductsText}
-            </Typography>
-        );
-    }
-
-    if (products.length) {
-        return productTable;
-    }
+  if (products.length) {
+    return productTable;
+  }
 };
 
 const mapStateToProps = ({
-    productsState: { products, filters, loading },
-    paginationState: { currentPage, rowsPerPage },
-    searchState: { searchTerm },
+  productsState: { products, filters, loading },
+  paginationState: { currentPage, rowsPerPage },
+  searchState: { searchTerm }
 }) => ({
-    products,
-    filters,
-    loading,
-    currentPage,
-    rowsPerPage,
-    searchTerm,
+  products,
+  filters,
+  loading,
+  currentPage,
+  rowsPerPage,
+  searchTerm
 });
 const mapDispatchToProps = {
-    setProducts,
-    setProductLoadingStatus,
-    setPagesCount,
-    setDialogStatus,
-    setDialogTitle,
-    setDialogContent,
-    setButtonTitle,
-    setEventHandler,
-    setSnackBarStatus,
-    setSnackBarSeverity,
-    setSnackBarMessage,
-    setDrawerStatus,
+  setProducts,
+  setProductLoadingStatus,
+  setPagesCount,
+  setDialogStatus,
+  setDialogTitle,
+  setDialogContent,
+  setButtonTitle,
+  setEventHandler,
+  setSnackBarStatus,
+  setSnackBarSeverity,
+  setSnackBarMessage,
+  setDrawerStatus
 };
 
 export default wrapWithAdminService()(
-    connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductList))
+  connect(mapStateToProps, mapDispatchToProps)(withRouter(ProductList))
 );

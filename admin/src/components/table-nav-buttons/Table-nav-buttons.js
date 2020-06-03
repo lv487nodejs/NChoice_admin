@@ -11,34 +11,46 @@ const CLEAR_BUTTON_TITLE = 'Clear All';
 const SMALL_SIZE = 'small';
 const DEFAULT_SIZE = 'medium';
 
-const TableNavButtons = ({ filterCounters, handleMenuOpen, handleClearFilter, dense }) => {
-    const size = dense ? SMALL_SIZE : DEFAULT_SIZE;
+const TableNavButtons = ({
+  filterCounters,
+  handleMenuOpen,
+  handleClearFilter,
+  dense
+}) => {
+  const size = dense ? SMALL_SIZE : DEFAULT_SIZE;
 
-    const filterButtons = filterLabels.map(name => (
-        <Badge key={name} color="error" badgeContent={filterCounters[name]}>
-            <StandardButton title={name} size={size} eventHandler={handleMenuOpen(name)} />
-        </Badge>
-    ));
+  const filterButtons = filterLabels.map(name => (
+    <Badge key={name} color='error' badgeContent={filterCounters[name]}>
+      <StandardButton
+        title={name}
+        size={size}
+        eventHandler={handleMenuOpen(name)}
+      />
+    </Badge>
+  ));
 
-    const clearDisable = filterCounters.total === 0;
+  const clearDisable = filterCounters.total === 0;
 
-    return (
-        <Fragment>
-            {filterButtons}
-            <StandardButton
-                disabled={clearDisable}
-                key={CLEAR_BUTTON_TITLE}
-                eventHandler={handleClearFilter}
-                size={size}
-                title={CLEAR_BUTTON_TITLE}
-            />
-        </Fragment>
-    );
+  return (
+    <Fragment>
+      {filterButtons}
+      <StandardButton
+        disabled={clearDisable}
+        key={CLEAR_BUTTON_TITLE}
+        eventHandler={handleClearFilter}
+        size={size}
+        title={CLEAR_BUTTON_TITLE}
+      />
+    </Fragment>
+  );
 };
 
-const mapStateToProps = ({ filtersState: { filterCounters }, tableState: { dense } }) => ({
-    filterCounters,
-    dense,
+const mapStateToProps = ({
+  filtersState: { filterCounters },
+  tableState: { dense }
+}) => ({
+  filterCounters,
+  dense
 });
 
 export default connect(mapStateToProps)(TableNavButtons);

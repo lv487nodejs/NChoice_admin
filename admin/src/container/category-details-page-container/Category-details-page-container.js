@@ -2,13 +2,16 @@ import React from 'react';
 
 import CategoryDetails from '../../components/category-details';
 
-const CategoryDetailsPageContainer = props => {
-    const { id } = props.match.params;
-    return (
-        <div>
-            <CategoryDetails categoryId={id} />
-        </div>
-    );
-};
+const CategoryDetailsPageContainer = ({
+  match: {
+    params: {
+      id: { id }
+    }
+  }
+}) => (
+  <div>
+    <CategoryDetails categoryId={id} />
+  </div>
+);
 
 export default CategoryDetailsPageContainer;

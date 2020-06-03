@@ -3,10 +3,10 @@ import { paletteGenerator } from './Pallete';
 import { typography } from './Typography';
 
 export const theme = colorSchema => {
-    const palette = paletteGenerator(colorSchema);
+  const palette = paletteGenerator(colorSchema);
 
-    return createMuiTheme({
-        palette,
-        typography,
-    });
+  return createMuiTheme({
+    palette,
+    typography
+  });
 };

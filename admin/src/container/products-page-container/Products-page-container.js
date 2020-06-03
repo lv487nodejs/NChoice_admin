@@ -4,14 +4,14 @@ import ProductList from '../../components/product-list/Product-list';
 import TableNav from '../../components/table-nav';
 
 const ProductsPageContainer = () => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-        <div className={classes.content}>
-            <TableNav />
-            <ProductList />
-        </div>
-    );
+  return (
+    <div className={classes.content}>
+      <TableNav />
+      <ProductList />
+    </div>
+  );
 };
 
 export default ProductsPageContainer;

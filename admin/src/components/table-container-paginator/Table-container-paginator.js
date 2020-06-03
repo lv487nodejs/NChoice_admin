@@ -8,49 +8,49 @@ import TablePaginationActions from './Paginator-control';
 const FIRST_PAGE = 0;
 
 const selectProps = {
-    native: true,
+  native: true
 };
 
 const TablePaginator = ({
-    currentPage,
-    pagesCount,
-    rowsPerPageOptions,
-    rowsPerPage,
-    setCurrentPage,
-    setRowsPerPage,
+  currentPage,
+  pagesCount,
+  rowsPerPageOptions,
+  rowsPerPage,
+  setCurrentPage,
+  setRowsPerPage
 }) => {
-    const handleChangePage = (event, newPage) => {
-        setCurrentPage(newPage);
-    };
+  const handleChangePage = (event, newPage) => {
+    setCurrentPage(newPage);
+  };
 
-    const handleChangeRowsPerPage = event => {
-        const rowsPerPageValue = parseInt(event.target.value);
-        setCurrentPage(FIRST_PAGE);
-        setRowsPerPage(rowsPerPageValue);
-    };
+  const handleChangeRowsPerPage = event => {
+    const rowsPerPageValue = parseInt(event.target.value);
+    setCurrentPage(FIRST_PAGE);
+    setRowsPerPage(rowsPerPageValue);
+  };
 
-    return (
-        <TablePagination
-            component="div"
-            rowsPerPageOptions={rowsPerPageOptions}
-            count={pagesCount}
-            rowsPerPage={rowsPerPage}
-            page={currentPage}
-            SelectProps={selectProps}
-            onChangePage={handleChangePage}
-            onChangeRowsPerPage={handleChangeRowsPerPage}
-            ActionsComponent={TablePaginationActions}
-        />
-    );
+  return (
+    <TablePagination
+      component='div'
+      rowsPerPageOptions={rowsPerPageOptions}
+      count={pagesCount}
+      rowsPerPage={rowsPerPage}
+      page={currentPage}
+      SelectProps={selectProps}
+      onChangePage={handleChangePage}
+      onChangeRowsPerPage={handleChangeRowsPerPage}
+      ActionsComponent={TablePaginationActions}
+    />
+  );
 };
 
 const mapStateToProps = ({
-    paginationState: { pagesCount, rowsPerPageOptions, rowsPerPage, currentPage },
+  paginationState: { pagesCount, rowsPerPageOptions, rowsPerPage, currentPage }
 }) => ({
-    pagesCount,
-    rowsPerPageOptions,
-    rowsPerPage,
-    currentPage,
+  pagesCount,
+  rowsPerPageOptions,
+  rowsPerPage,
+  currentPage
 });
 
 const mapDispatchToProps = { setRowsPerPage, setCurrentPage };

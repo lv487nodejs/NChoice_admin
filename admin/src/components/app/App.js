@@ -13,19 +13,19 @@ const DARK_THEME = 'dark';
 const LIGHT_THEME = 'light';
 
 const App = ({ darkMode }) => {
-    const themeMode = darkMode ? DARK_THEME : LIGHT_THEME;
-    const themeValue = theme(themeMode);
+  const themeMode = darkMode ? DARK_THEME : LIGHT_THEME;
+  const themeValue = theme(themeMode);
 
-    const classes = useStyles();
+  const classes = useStyles();
 
-    return (
-        <ThemeProvider theme={themeValue}>
-            <CssBaseline />
-            <div className={classes.root}>
-                <AppRouter />
-            </div>
-        </ThemeProvider>
-    );
+  return (
+    <ThemeProvider theme={themeValue}>
+      <CssBaseline />
+      <div className={classes.root}>
+        <AppRouter />
+      </div>
+    </ThemeProvider>
+  );
 };
 
 const mapsStateToProps = ({ themeState: { darkMode } }) => ({ darkMode });

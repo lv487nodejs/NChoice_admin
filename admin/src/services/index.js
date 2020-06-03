@@ -9,14 +9,13 @@ import ordersService from './Orders-service';
 import newsService from './News-service';
 
 export {
-    productsService,
-    productPropetriesService,
-    catalogsService,
-    brandsService,
-    categoriesService,
-    usersService,
-    colorsService,
-    ordersService,
-    newsService
+  productsService,
+  productPropetriesService,
+  catalogsService,
+  brandsService,
+  categoriesService,
+  usersService,
+  colorsService,
+  ordersService,
+  newsService
 };
-
