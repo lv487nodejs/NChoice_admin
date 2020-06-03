@@ -17,6 +17,8 @@ import {
     setOrder,
 } from '../../actions';
 
+const idItemIndex = 2
+
 const OrderDetailPage = ({
         order,
         adminService,
@@ -31,24 +33,21 @@ const OrderDetailPage = ({
 
         const getOrder = useCallback(() => {
             const getConcreteItem =  item => {
-                return  productsService.getProductById(item.item).then(res => {
-                    if (res) {
-                        return res;
-                    }
+                return  productsService.getProductById(item.item).then(res => {       
+                        return res || null;
                 })
             }
     
             const gridItems = (itemsDetails) => {
                 return itemsDetails.map((item) => {
-                    const itemDetails = getConcreteItem(item).then((res) => {
-                        let obj = Object.assign({}, res, { quantity: item.quantity })
-                        return obj
+                    const itemDetails = getConcreteItem(item).then((res) => { 
+                        return Object.assign({}, res, { quantity: item.quantity })
                     })
                     return itemDetails
                 })
             }
 
-            ordersService.getOrderById(window.location.pathname.split('/')[2]).then(async res => {
+            ordersService.getOrderById(window.location.pathname.split('/')[idItemIndex]).then(async res => {
                 if (res) {
                     const order = res;
                     console.log(order)

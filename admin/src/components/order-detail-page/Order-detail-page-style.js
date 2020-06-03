@@ -12,6 +12,7 @@ export const useStyles = makeStyles(theme => ({
         display: 'flex',
         justifyContent: 'space-between',
         flexGrow: '1',
+        textTransform: 'uppercase',
     },
     orderInfo: {
         margin: '10px 0',
