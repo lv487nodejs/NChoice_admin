@@ -70,76 +70,79 @@ const NewsAddPage = props => {
     const titleHandler = e => {
         setTitle(e.target.value);
     };
-
-
+    const newsOptions = [
+      {
+        id: 'author',
+        className: classes.textfield,
+        variant: 'outlined',
+        label: 'Author',
+        author,
+        handler: authorHandler
+      },
+      {
+        id: 'authorPhoto',
+        className: classes.textfield,
+        variant: 'outlined',
+        label: 'Author Photo',
+        authorPhoto,
+        handler: authorPhotoHandler
+      },
+      {
+        id: 'newsImage',
+        className: classes.textfield,
+        variant: 'outlined',
+        label: 'News Image',
+        newsImage,
+        handler: newsImageHandler
+      },
+      {
+        id: 'newsVideo',
+        className: classes.textfield,
+        variant: 'outlined',
+        label: 'Video Link',
+        newsVideo,
+        handler: newsVideoHandler
+      },
+      {
+        id: 'text',
+        className: classes.textfield,
+        variant: 'outlined',
+        label: 'Text',
+        text,
+        handler: textHandler
+      },
+      {
+        id: 'title',
+        className: classes.textfield,
+        variant: 'outlined',
+        label: 'Title',
+        title,
+        handler: titleHandler
+      }
+    ];
+  
+  const newsInputs = newsOptions.map(({id,className, variant,label, value, handler})=>{
+    return <TextField id={id} key={id} className={className} variant={variant} label={label} value={value} onChange={()=>handler} required />
+  }) 
+  
     return (
-        <form onSubmit={newsSaveHandler}>
-            <FormControl>
-                <Paper className={classes.brandAdd}>
-                    <TextField
-                        id="author"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="Author"
-                        value={author}
-                        onChange={authorHandler}
-                        required
-                    />
-                    <TextField
-                        id="authorPhoto"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="Avatar name"
-                        value={authorPhoto}
-                        onChange={authorPhotoHandler}
-                        required
-                    />
-                    <TextField
-                        id="newsImage"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="Image name"
-                        value={newsImage}
-                        onChange={newsImageHandler}
-                    />
-                    <TextField
-                        id="newsVideo"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="Video link"
-                        value={newsVideo}
-                        onChange={newsVideoHandler}
-                    />
-                    <TextField
-                        id="title"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="Title"
-                        value={title}
-                        onChange={titleHandler}
-                        required
-                    />
-                    <TextField
-                        id="text"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="text"
-                        multiline
-                        value={text}
-                        onChange={textHandler}
-                        required
-                    />
-                    <SaveButton id="save" type="submit" title="Save" />
-                </Paper>
-            </FormControl>
-        </form>
+      <form onSubmit={newsSaveHandler}>
+        <FormControl>
+          <Paper className={classes.brandAdd}>
+            {newsInputs}
+            <SaveButton id='save' type='submit' title='Save' />
+          </Paper>
+        </FormControl>
+      </form>
     );
-};
-
-const mapDispatchToProps = {
+  };
+  
+  const mapDispatchToProps = {
     setSnackBarStatus,
     setSnackBarSeverity,
-    setSnackBarMessage,
-};
-
-export default wrapWithAdminService()(connect(null, mapDispatchToProps)(withRouter(NewsAddPage)));
+    setSnackBarMessage
+  };
+  
+  export default wrapWithAdminService()(
+    connect(null, mapDispatchToProps)(withRouter(NewsAddPage))
+  );
