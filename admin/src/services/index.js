@@ -6,14 +6,16 @@ import categoriesService from './Categories-service';
 import usersService from './Users-service';
 import colorsService from './Colors-service';
 import ordersService from './Orders-service';
+import newsService from './News-service';
 
 export {
-    productsService,
-    productPropetriesService,
-    catalogsService,
-    brandsService,
-    categoriesService,
-    usersService,
-    colorsService,
-    ordersService
+  productsService,
+  productPropetriesService,
+  catalogsService,
+  brandsService,
+  categoriesService,
+  usersService,
+  colorsService,
+  ordersService,
+  newsService
 };

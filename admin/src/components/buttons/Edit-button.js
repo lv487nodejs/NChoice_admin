@@ -5,16 +5,20 @@ import EditIcon from '@material-ui/icons/Edit';
 
 const EDIT_TITLE = 'Edit';
 
-const EditButton = props => {
-    const { eventHandler, size } = props;
+const EditButton = (props) => {
+  const { eventHandler, size } = props;
 
-    return (
-        <Tooltip title={EDIT_TITLE}>
-            <IconButton aria-label={EDIT_TITLE} onClick={eventHandler} color="secondary">
-                <EditIcon fontSize={size} />
-            </IconButton>
-        </Tooltip>
-    );
+  return (
+    <Tooltip title={EDIT_TITLE}>
+      <IconButton
+        aria-label={EDIT_TITLE}
+        onClick={eventHandler}
+        color='secondary'
+      >
+        <EditIcon fontSize={size} />
+      </IconButton>
+    </Tooltip>
+  );
 };
 
 export default EditButton;

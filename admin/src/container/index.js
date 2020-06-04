@@ -1,5 +1,6 @@
 import ProductsPageContainer from './products-page-container';
 import StatsPageContainer from './stats-page-container';
+import NewsPageContainer from './news-page-container';
 import UsersPageContainer from './users-page-container';
 import UserDetailsPageContainer from './user-details-page-container';
 import BrandsPageContainer from './brand-page-container';
@@ -9,13 +10,14 @@ import ProductDetailsPage from './product-details-container';
 import LoginPageContainer from './login-page-container';
 
 export {
-    ProductsPageContainer,
-    StatsPageContainer,
-    UsersPageContainer,
-    UserDetailsPageContainer,
-    BrandsPageContainer,
-    CategoriesPageContainer,
-    CategoryDetailsPageContainer,
-    ProductDetailsPage,
-    LoginPageContainer,
+  ProductsPageContainer,
+  StatsPageContainer,
+  NewsPageContainer,
+  UsersPageContainer,
+  UserDetailsPageContainer,
+  BrandsPageContainer,
+  CategoriesPageContainer,
+  CategoryDetailsPageContainer,
+  ProductDetailsPage,
+  LoginPageContainer
 };

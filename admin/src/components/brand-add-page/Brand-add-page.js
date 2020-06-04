@@ -6,64 +6,71 @@ import { useStyles } from './Brand-add-page-style';
 import { SaveButton } from '../buttons';
 import wrapWithAdminService from '../wrappers';
 
-import { setSnackBarStatus, setSnackBarSeverity, setSnackBarMessage } from '../../actions';
+import {
+  setSnackBarStatus,
+  setSnackBarSeverity,
+  setSnackBarMessage
+} from '../../actions';
 
-const BrandAddPage = props => {
-    const classes = useStyles();
+const BrandAddPage = (props) => {
+  const classes = useStyles();
 
-    const {
-        adminService,
-        history,
-        setSnackBarStatus,
-        setSnackBarSeverity,
-        setSnackBarMessage,
-    } = props;
-    const { brandsService } = adminService;
+  const {
+    adminService,
+    history,
+    setSnackBarStatus,
+    setSnackBarSeverity,
+    setSnackBarMessage
+  } = props;
 
-    const [brandName, setBrandName] = useState('');
+  const { brandsService } = adminService;
 
-    const brandSaveHandler = async e => {
-        e.preventDefault();
-        const newBrand = {
-            brand: e.target.brandName.value,
-        };
+  const [brandName, setBrandName] = useState('');
 
-        const res = await brandsService.postBrand(newBrand);
-        setSnackBarSeverity('success');
-        setSnackBarMessage(`Brand ${res.brand} succesfully saved!`);
-        setSnackBarStatus(true);
-        setBrandName('');
-        history.push(`/brands`);
+  const brandSaveHandler = async (e) => {
+    e.preventDefault();
+    const newBrand = {
+      brand: e.target.brandName.value
     };
 
-    const brandNameHandler = e => {
-        setBrandName(e.target.value);
-    };
+    const res = await brandsService.postBrand(newBrand);
+    setSnackBarSeverity('success');
+    setSnackBarMessage(`Brand ${res.brand} succesfully saved!`);
+    setSnackBarStatus(true);
+    setBrandName('');
+    history.push(`/brands`);
+  };
 
-    return (
-        <form onSubmit={brandSaveHandler}>
-            <FormControl>
-                <Paper className={classes.brandAdd}>
-                    <TextField
-                        id="brandName"
-                        className={classes.textfield}
-                        variant="outlined"
-                        label="Brand name"
-                        value={brandName}
-                        onChange={brandNameHandler}
-                        required
-                    />
-                    <SaveButton id="save" type="submit" title="Save" />
-                </Paper>
-            </FormControl>
-        </form>
-    );
+  const brandNameHandler = (e) => {
+    setBrandName(e.target.value);
+  };
+
+  return (
+    <form onSubmit={brandSaveHandler}>
+      <FormControl>
+        <Paper className={classes.brandAdd}>
+          <TextField
+            id='brandName'
+            className={classes.textfield}
+            variant='outlined'
+            label='Brand name'
+            value={brandName}
+            onChange={brandNameHandler}
+            required
+          />
+          <SaveButton id='save' type='submit' title='Save' />
+        </Paper>
+      </FormControl>
+    </form>
+  );
 };
 
 const mapDispatchToProps = {
-    setSnackBarStatus,
-    setSnackBarSeverity,
-    setSnackBarMessage,
+  setSnackBarStatus,
+  setSnackBarSeverity,
+  setSnackBarMessage
 };
 
-export default wrapWithAdminService()(connect(null, mapDispatchToProps)(withRouter(BrandAddPage)));
+export default wrapWithAdminService()(
+  connect(null, mapDispatchToProps)(withRouter(BrandAddPage))
+);

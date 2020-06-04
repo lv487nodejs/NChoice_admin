@@ -17,22 +17,25 @@ import snackbarState from './Snackbar-reducer';
 import chartsState from './Charts-reducer';
 import ordersState from './Orders-reducer';
 import adminState from './Auth-reducer';
+import newsState from './News-reducer';
+
 export default combineReducers({
-    catalogsState,
-    categoriesState,
-    brandsState,
-    productsState,
-    productModelState,
-    usersState,
-    colorsState,
-    paginationState,
-    filtersState,
-    searchState,
-    tableState,
-    themeState,
-    dialogWindowState,
-    snackbarState,
-    chartsState,
-    ordersState,
-    adminState,
+  catalogsState,
+  categoriesState,
+  brandsState,
+  productsState,
+  productModelState,
+  usersState,
+  colorsState,
+  paginationState,
+  filtersState,
+  searchState,
+  tableState,
+  themeState,
+  dialogWindowState,
+  snackbarState,
+  chartsState,
+  ordersState,
+  adminState,
+  newsState
 });

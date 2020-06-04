@@ -1,18 +1,18 @@
 const initialState = {
-    admin: {},
+  admin: {}
 };
 
 const adminState = (state = initialState, action) => {
-    switch (action.type) {
-        case 'SET_ADMIN':
-            return {
-                ...state,
-                admin: action.payload,
-            };
+  switch (action.type) {
+    case 'SET_ADMIN':
+      return {
+        ...state,
+        admin: action.payload
+      };
 
-        default:
-            return state;
-    }
+    default:
+      return state;
+  }
 };
 
 export default adminState;

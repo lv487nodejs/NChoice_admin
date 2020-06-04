@@ -14,48 +14,48 @@ const searchClear = '';
 const submitKey = 'Enter';
 
 const TableNavSearchBar = ({ searchValue, setSearchValue, setSearchTerm }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    useEffect(() => () => setSearchTerm(searchClear), [setSearchTerm]);
+  useEffect(() => () => setSearchTerm(searchClear), [setSearchTerm]);
 
-    const handleSearchChange = event => {
-        const { value } = event.target;
-        setSearchValue(value);
-    };
+  const handleSearchChange = (event) => {
+    const { value } = event.target;
+    setSearchValue(value);
+  };
 
-    const handleSearchSubmit = event => {
-        if (event.key === submitKey) {
-            setSearchTerm(searchValue);
-            setSearchValue(searchClear);
-        }
-    };
+  const handleSearchSubmit = (event) => {
+    if (event.key === submitKey) {
+      setSearchTerm(searchValue);
+      setSearchValue(searchClear);
+    }
+  };
 
-    return (
-        <div className={classes.search}>
-            <div className={classes.searchIcon}>
-                <SearchIcon />
-            </div>
-            <InputBase
-                placeholder={placeHolder}
-                classes={{
-                    root: classes.inputRoot,
-                    input: classes.inputInput,
-                }}
-                inputProps={inputProps}
-                value={searchValue}
-                onChange={handleSearchChange}
-                onKeyPress={handleSearchSubmit}
-            />
-        </div>
-    );
+  return (
+    <div className={classes.search}>
+      <div className={classes.searchIcon}>
+        <SearchIcon />
+      </div>
+      <InputBase
+        placeholder={placeHolder}
+        classes={{
+          root: classes.inputRoot,
+          input: classes.inputInput
+        }}
+        inputProps={inputProps}
+        value={searchValue}
+        onChange={handleSearchChange}
+        onKeyPress={handleSearchSubmit}
+      />
+    </div>
+  );
 };
 
 const mapStateToProps = ({ searchState: { searchValue } }) => ({
-    searchValue,
+  searchValue
 });
 const mapDispatchToProps = {
-    setSearchValue,
-    setSearchTerm,
+  setSearchValue,
+  setSearchTerm
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TableNavSearchBar);
