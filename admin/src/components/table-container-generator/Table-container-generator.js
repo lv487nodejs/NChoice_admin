@@ -10,12 +10,17 @@ import TablePaginator from '../table-container-paginator';
 const SMALL_SIZE = 'small';
 const DEFAULT_SIZE = 'medium';
 
-const TableContainerGenerator = ({ tableTitles, tableItems, pagination, dense, ...props }) => {
+const TableContainerGenerator = ({ tableTitles, tableItems, pagination, dense, 
+    // ...props
+ }) => {
     const classes = useStyles();
 
     return (
         <div>
-            <TableContainer className={classes.container} component={Paper} {...props} >
+            <TableContainer className={classes.container} component={Paper}
+             // removed 4.6.20(console error)
+            //  {...props} 
+             >
                 <Table
                     className={classes.table}
                     stickyHeader
