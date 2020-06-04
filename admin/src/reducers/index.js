@@ -17,6 +17,7 @@ import snackbarState from './Snackbar-reducer';
 import chartsState from './Charts-reducer';
 import ordersState from './Orders-reducer';
 import adminState from './Auth-reducer';
+import newsState from './News-reducer';
 export default combineReducers({
     catalogsState,
     categoriesState,
@@ -35,4 +36,5 @@ export default combineReducers({
     chartsState,
     ordersState,
     adminState,
+    newsState,
 });

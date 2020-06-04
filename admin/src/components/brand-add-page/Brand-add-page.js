@@ -18,6 +18,7 @@ const BrandAddPage = props => {
         setSnackBarSeverity,
         setSnackBarMessage,
     } = props;
+
     const { brandsService } = adminService;
 
     const [brandName, setBrandName] = useState('');

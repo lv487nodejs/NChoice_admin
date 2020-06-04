@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { withRouter, Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import wrapWithAdminService from '../wrappers';
-
 import {
-    setBrands,
-    brandLoadingStatus,
     setSnackBarStatus,
     setSnackBarSeverity,
     setSnackBarMessage,
@@ -17,25 +14,31 @@ import {
     setEventHandler,
 } from '../../actions';
 
-import useStyle from './Brand-list-style';
+import {
+    setNews,
+    newsLoadingStatus
+} from '../../actions';
+
+import useStyle from './News-page-style';
 import LoadingBar from '../loading-bar';
 import TableContainerRow from '../table-container-row';
 import TableContainerGenerator from '../table-container-generator/Table-container-generator';
 
 import { config } from '../../config';
 
-const tableTitles = config.tableHeadRowTitles.brands;
+const tableTitles = config.tableHeadRowTitles.news;
+const pathToNewsAddPage = '/newsadd';
 
-const REMOVE_TITLE = 'Remove brand';
-const REMOVE_MESSAGE = 'Are you sure you want to remove brand?';
+const REMOVE_TITLE = 'Remove news';
+const REMOVE_MESSAGE = 'Are you sure you want to remove this item?';
 const SUCCESS_STATUS = 'success';
 
-const BrandList = ({
+const TestList = ({
+    news,
     adminService,
-    brands,
-    setBrands,
-    brandLoadingStatus,
     loading,
+    setNews,
+    newsLoadingStatus,
     history,
     setSnackBarStatus,
     setSnackBarSeverity,
@@ -46,16 +49,14 @@ const BrandList = ({
     setButtonTitle,
     setEventHandler,
 }) => {
-    const { brandsService } = adminService;
-
-    const pathToAddBrandPage = '/brandadd';
+    const { newsService } = adminService;
 
     const classes = useStyle();
 
     useEffect(() => {
-        brandLoadingStatus();
-        brandsService.getAllBrands().then(res => setBrands(res));
-    }, [brandsService, setBrands, brandLoadingStatus]);
+        newsLoadingStatus();
+        newsService.getAllNews().then(res => setNews(res));
+    }, [newsService, setNews, newsLoadingStatus]);
 
     const openSuccessSnackbar = eventHandler => {
         setDialogTitle(REMOVE_TITLE);
@@ -65,31 +66,33 @@ const BrandList = ({
         setDialogStatus(true);
     };
 
-    const brandDeleteHandler = id => async () => {
-        const removeBrand = async () => {
-            const res = await brandsService.deleteBrand(id);
+    const newsDeleteHandler = id => async () => {
+        const removeNews = async () => {
+            const res = await newsService.deleteNewsItem(id);
             setDialogStatus(false);
             setSnackBarMessage(res);
             setSnackBarSeverity(SUCCESS_STATUS);
             setSnackBarStatus(true);
-            brandLoadingStatus();
-            const newBrands = await brandsService.getAllBrands();
-            setBrands(newBrands);
+            newsLoadingStatus();
+            const newNewsItems = await newsService.getAllNews();
+            setNews(newNewsItems);
         };
-        openSuccessSnackbar(removeBrand);
+        openSuccessSnackbar(removeNews);
     };
 
-    const brandItems = brands.map((brand, index) => (
+    const newsItems = news.map((newsItem, index) => (
         <TableContainerRow
             key={index}
-            id={brand._id}
-            brand={brand.brand}
+            id={newsItem._id}
+            author={newsItem.author}
+            title={newsItem.title}
             editHandler={() => {
-                history.push(`/brand/${brand._id}`);
+                history.push(`/news/${newsItem._id}`);
             }}
-            deleteHandler={brandDeleteHandler(brand._id)}
+            deleteHandler={newsDeleteHandler(newsItem._id)}
         />
     ));
+
 
     if (loading) {
         return <LoadingBar />;
@@ -98,28 +101,28 @@ const BrandList = ({
         <div>
             <div className={classes.tableNav}>
                 <Button
-                    id="add-brand"
+                    id="add-news"
                     component={Link}
-                    to={pathToAddBrandPage}
+                    to={pathToNewsAddPage}
                     variant="contained"
                     color="primary"
                 >
-                    New Brand
+                    Create News
                 </Button>
             </div>
-            <TableContainerGenerator id="brandsTable" tableTitles={tableTitles} tableItems={brandItems} />
+            <TableContainerGenerator id="newsTable" tableTitles={tableTitles} tableItems={newsItems} />
         </div>
     );
 };
 
-const mapStateToProps = ({ brandsState: { brands, loading } }) => ({
-    brands,
+const mapStateToProps = ({ newsState: { news, loading } }) => ({
+    news,
     loading,
 });
 
 const mapDispatchToProps = {
-    setBrands,
-    brandLoadingStatus,
+    setNews,
+    newsLoadingStatus,
     setSnackBarStatus,
     setSnackBarSeverity,
     setSnackBarMessage,
@@ -131,5 +134,5 @@ const mapDispatchToProps = {
 };
 
 export default wrapWithAdminService()(
-    connect(mapStateToProps, mapDispatchToProps)(withRouter(BrandList))
+    connect(mapStateToProps, mapDispatchToProps)(withRouter(TestList))
 );

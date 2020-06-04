@@ -3,6 +3,7 @@ import AssessmentIcon from '@material-ui/icons/Assessment';
 import CategoryIcon from '@material-ui/icons/Category';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 import CollectionsBookmarkIcon from '@material-ui/icons/CollectionsBookmark';
+import ImportContactsIcon from '@material-ui/icons/ImportContacts';
 
 const routes = {
     pathToOrders: '/',
@@ -13,8 +14,11 @@ const routes = {
     pathToCategoryDetails: '/category/:id',
     pathToAddCategory: '/categoryadd',
     pathToBrands: '/brands',
+    pathToNews: '/news',
     pathToBrandDetails: '/brand/:id',
+    pathToNewsDetails: '/news/:id',
     pathToAddBrand: '/brandadd',
+    pathToAddNews: '/newsadd',
     pathToUsers: '/users',
     pathToUserDetails: '/user/:id',
     pathToLogin: '/login',
@@ -28,6 +32,7 @@ export const config = {
             ['Products', routes.pathToProducts, ShoppingBasketIcon],
             ['Categories', routes.pathToCategories, CategoryIcon],
             ['Brands', routes.pathToBrands, CollectionsBookmarkIcon],
+            ['News', routes.pathToNews, ImportContactsIcon],
             ['Users', routes.pathToUsers, PeopleAltIcon],
         ],
         routes,
@@ -40,6 +45,7 @@ export const config = {
         products: ['Image', 'Catalog', 'Category', 'Brand', 'Title', 'Price', 'Mrsp', 'Actions'],
         users: ['Avatar', 'Email', 'First Name', 'Last Name', 'Role', 'Actions'],
         brands: ['Avatar', 'Brand', 'Actions'],
+        news: ['Avatar', 'Author', 'Title', 'Actions'],
         categories: ['Avatar', 'Category', 'Actions'],
     },
     stepper: {
