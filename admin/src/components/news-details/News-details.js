@@ -79,7 +79,6 @@ const NewsDetails = props => {
     const newsImageHandler = e => {
         setNewsImage(e.target.value);
     };
-
     const newsVideoHandler = e => {
         setNewsVideo(e.target.value);
     }
