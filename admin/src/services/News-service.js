@@ -19,7 +19,6 @@ class NewsService extends AdminService {
 
     putNewsItem = async newsItem => {
         const res = await this.putData(`news/${newsItem._id}`, newsItem);
-        console.log(newsItem)
         return res;
     };
 
