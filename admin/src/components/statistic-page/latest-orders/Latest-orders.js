@@ -139,7 +139,7 @@ const LatestOrders = ({
         return (
         
         <TableRow hover key={order._id}>
-            <TableCell onClick={() => handleOrder(order._id)}>{order._id}</TableCell>
+            <TableCell onClick={() => handleOrder(order._id)} style={{cursor: 'pointer'}}>{order._id}</TableCell>
             <TableCell>{order.userId.email}</TableCell>
             <TableCell>{moment(order.date).format(DATE_FORMAT)}</TableCell>
             <TableCell>
