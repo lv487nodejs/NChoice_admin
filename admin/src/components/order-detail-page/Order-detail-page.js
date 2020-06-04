@@ -122,6 +122,8 @@ const OrderDetailPage = ({
             <Paper className={classes.orderInfo}>
                 <Grid container  className = {classes.OrderInfoDetails} 
                 direction='column' alignItems='stretch'>
+                    <h2> First name: { order.firstName }</h2>
+                    <h2> Last name: { order.lasrName }</h2>
                     <h2> Email: { order.email }</h2>
                     <h3> Phone-number: { order.contactPhone }</h3>
                     <h3> Date: { order.date }</h3>
