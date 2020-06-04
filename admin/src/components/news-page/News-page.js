@@ -80,7 +80,7 @@ const TestList = ({
         openSuccessSnackbar(removeNews);
     };
 
-    const newsItems = news.map((newsItem, index) => (
+    const newsItems = news.length > 0 ? news.map((newsItem, index) => (
         <TableContainerRow
             key={index}
             id={newsItem._id}
@@ -91,7 +91,7 @@ const TestList = ({
             }}
             deleteHandler={newsDeleteHandler(newsItem._id)}
         />
-    ));
+    )) : null;
 
 
     if (loading) {

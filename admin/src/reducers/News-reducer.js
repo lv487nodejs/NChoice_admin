@@ -1,6 +1,20 @@
 const initialState = {
-    news: [],
-    newsItem: '',
+    news: {
+        author: '',
+        authorPhoto: '',
+        newsImage: '',
+        newsVideo: '',
+        title: '',
+        text: '',
+    },
+    newsItem: {
+        author: '',
+        authorPhoto: '',
+        newsImage: '',
+        newsVideo: '',
+        title: '',
+        text: '',
+    },
     loading: true,
 };
 
