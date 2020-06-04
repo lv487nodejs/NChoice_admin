@@ -23,11 +23,13 @@ import NewsAddPage from '../news-add-page';
 import BrandDetails from '../brand-details';
 import NewsDetails from '../news-details';
 
+import OrderDetailPage from '../order-detail-page';
+
 import DialogWindow from '../dialog-window';
 import SnackbarItem from '../snackbar-item';
 
 import NavBar from '../nav-bar';
-import NavMenu from '../nav-menu';
+import NavMenu from '../nav-menu'; 
 
 const { routes } = config.app;
 
@@ -52,6 +54,7 @@ const AppRouter = () => (
             <Route path={routes.pathToBrandDetails} exact component={BrandDetails} />
             <Route path={routes.pathToNewsDetails} exact component={NewsDetails} />
             <Route path={routes.pathToLogin} exact component={LoginPageContainer} />
+            <Route path={routes.pathToOrderDetails} exact component={OrderDetailPage} />
             <Redirect to={routes.pathToOrders} />
         </Switch>
         <DialogWindow />
