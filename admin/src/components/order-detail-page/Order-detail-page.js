@@ -50,7 +50,6 @@ const OrderDetailPage = ({
             ordersService.getOrderById(window.location.pathname.split('/')[idItemIndex]).then(async res => {
                 if (res) {
                     const order = res;
-                    console.log(order)
                     setOrder(order);
                     setAddress(order.deliveryAddress)
                     let itemsDetailInfo = []
@@ -71,6 +70,9 @@ const OrderDetailPage = ({
 
         useEffect(() => getOrder(), [getOrder]);
 
+        const orderItemPrice = (price, quantity) => (
+            price * quantity
+        )
 
         const expansionHeader = (item) => (
             <ExpansionPanelSummary
@@ -78,8 +80,8 @@ const OrderDetailPage = ({
                 id='panel1a-header'
             >
                 <div className={classes.heading}>
-                <Typography>{item.title.toUpperCase()}</Typography>
-                <Typography>Price: {item.price * item.quantity}</Typography>
+                <Typography>{item.title}</Typography>
+                <Typography>Price: {orderItemPrice(item.price, item.quantity)}</Typography>
                 </div>
             </ExpansionPanelSummary>
         )
