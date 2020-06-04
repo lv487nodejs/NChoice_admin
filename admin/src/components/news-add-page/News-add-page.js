@@ -95,7 +95,8 @@ const NewsAddPage = props => {
             variant: 'outlined',
             label: 'News Image',
             newsImage,
-            handler: newsImageHandler
+            handler: newsImageHandler,
+            required: true
         },
         {
             id: 'newsVideo',
@@ -104,7 +105,6 @@ const NewsAddPage = props => {
             label: 'Video Link',
             newsVideo,
             handler: newsVideoHandler,
-            required: true
         },
         {
             id: 'text',

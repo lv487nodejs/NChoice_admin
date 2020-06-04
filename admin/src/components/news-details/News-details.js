@@ -20,7 +20,7 @@ const NewsDetails = props => {
     const [author, setAuthor] = useState('');
     const [authorPhoto, setAuthorPhoto] = useState('');
     const [newsImage, setNewsImage] = useState('');
-    const [newsVideo, setNewsVideo] = useState('');
+    const [newsVideo, setNewsVideo] = useState('no video');
     const [text, setText] = useState('');
     const [title, setTitle] = useState('');
 
@@ -44,7 +44,9 @@ const NewsDetails = props => {
             setAuthor(res.author);
             setAuthorPhoto(res.authorPhoto);
             setNewsImage(res.newsImage);
-            setNewsVideo(res.newsVideo);
+            if(res.newsVideo){
+                setNewsVideo(res.newsVideo);
+            }
             setText(res.text);
             setTitle(res.title);
         });
@@ -117,6 +119,7 @@ const NewsDetails = props => {
                     label="Image name"
                     value={newsImage}
                     onChange={newsImageHandler}
+                    required
                 />
                 <TextField
                     id="newsVideo"
