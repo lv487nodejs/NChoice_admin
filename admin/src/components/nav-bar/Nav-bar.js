@@ -17,44 +17,47 @@ import { setThemeMode, setDrawerStatus } from '../../actions';
 const { title } = config.app;
 
 const NavBar = ({ drawerStatus, darkMode, setThemeMode, setDrawerStatus }) => {
-    const classes = useStyles();
+  const classes = useStyles();
 
-    const themeChangeHandler = () => setThemeMode(!darkMode);
+  const themeChangeHandler = () => setThemeMode(!darkMode);
 
-    const themeButton = darkMode ? <Brightness7Icon /> : <Brightness4Icon />;
+  const themeButton = darkMode ? <Brightness7Icon /> : <Brightness4Icon />;
 
-    const handleDrawerToggle = () => {
-        setDrawerStatus(!drawerStatus);
-    };
+  const handleDrawerToggle = () => {
+    setDrawerStatus(!drawerStatus);
+  };
 
-    const menuToggle = (
-        <IconButton id="menuToggle" onClick={handleDrawerToggle} className={classes.menuButton}>
-            <MenuIcon />
+  const menuToggle = (
+    <IconButton
+      id='menuToggle'
+      onClick={handleDrawerToggle}
+      className={classes.menuButton}
+    >
+      <MenuIcon />
+    </IconButton>
+  );
+
+  return (
+    <AppBar className={classes.appBar}>
+      <Toolbar>
+        {menuToggle}
+        <Typography id='logo' variant='h4' className={classes.title}>
+          {title}
+        </Typography>
+        <IconButton id='themeToggler' onClick={themeChangeHandler}>
+          {themeButton}
         </IconButton>
-    );
-
-    return (
-        <AppBar className={classes.appBar}>
-            <Toolbar>
-                {menuToggle}
-                <Typography id="logo" variant="h4" className={classes.title}>
-                    {title}
-                </Typography>
-                <IconButton id="themeToggler" onClick={themeChangeHandler}>
-                    {themeButton}
-                </IconButton>
-                <IconButton component={Link} to={'/login'}>
-                    <AccountCircle id="profileButton"  />
-                </IconButton>
-                
-            </Toolbar>
-        </AppBar>
-    );
+        <IconButton component={Link} to='/login'>
+          <AccountCircle id='profileButton' />
+        </IconButton>
+      </Toolbar>
+    </AppBar>
+  );
 };
 
 const mapsStateToProps = ({ themeState: { darkMode, drawerStatus } }) => ({
-    darkMode,
-    drawerStatus,
+  darkMode,
+  drawerStatus
 });
 const mapsDispatchToProps = { setThemeMode, setDrawerStatus };
 

@@ -10,33 +10,38 @@ import { config } from '../../config';
 
 const { snackBarDuration } = config.app;
 
-const Alert = props => <MuiAlert elevation={6} variant="filled" {...props} />;
+const Alert = (props) => <MuiAlert elevation={6} variant='filled' {...props} />;
 
-const SnackbarItem = ({ snackBarStatus, snackBarSeverity, snackBarMessage, setSnackBarStatus }) => {
-    const handleClose = (event, reason) => {
-        if (reason === 'clickaway') {
-            return;
-        }
+const SnackbarItem = ({
+  snackBarStatus,
+  snackBarSeverity,
+  snackBarMessage,
+  setSnackBarStatus
+}) => {
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
 
-        setSnackBarStatus(false);
-    };
+    setSnackBarStatus(false);
+  };
 
-    return (
-        <Snackbar
-            id="snack-bar"
-            open={snackBarStatus}
-            autoHideDuration={snackBarDuration}
-            onClose={handleClose}
-        >
-            <Alert onClose={handleClose} severity={snackBarSeverity}>
-                {snackBarMessage}
-            </Alert>
-        </Snackbar>
-    );
+  return (
+    <Snackbar
+      id='snack-bar'
+      open={snackBarStatus}
+      autoHideDuration={snackBarDuration}
+      onClose={handleClose}
+    >
+      <Alert onClose={handleClose} severity={snackBarSeverity}>
+        {snackBarMessage}
+      </Alert>
+    </Snackbar>
+  );
 };
 
 const mapStateToProps = ({
-    snackbarState: { snackBarStatus, snackBarSeverity, snackBarMessage },
+  snackbarState: { snackBarStatus, snackBarSeverity, snackBarMessage }
 }) => ({ snackBarStatus, snackBarSeverity, snackBarMessage });
 
 const mapDispatchToProps = { setSnackBarStatus };

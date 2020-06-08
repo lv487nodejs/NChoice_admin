@@ -6,10 +6,10 @@ import StepperNextButton from './Stepper-next-button';
 import StandardButton from './Standard-button';
 
 export {
-    DeleteButton,
-    EditButton,
-    SaveButton,
-    StepperBackButton,
-    StepperNextButton,
-    StandardButton,
+  DeleteButton,
+  EditButton,
+  SaveButton,
+  StepperBackButton,
+  StepperNextButton,
+  StandardButton
 };

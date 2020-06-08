@@ -10,14 +10,14 @@ import ProductDetailsPage from './product-details-container';
 import LoginPageContainer from './login-page-container';
 
 export {
-    ProductsPageContainer,
-    StatsPageContainer,
-    NewsPageContainer,
-    UsersPageContainer,
-    UserDetailsPageContainer,
-    BrandsPageContainer,
-    CategoriesPageContainer,
-    CategoryDetailsPageContainer,
-    ProductDetailsPage,
-    LoginPageContainer,
+  ProductsPageContainer,
+  StatsPageContainer,
+  NewsPageContainer,
+  UsersPageContainer,
+  UserDetailsPageContainer,
+  BrandsPageContainer,
+  CategoriesPageContainer,
+  CategoryDetailsPageContainer,
+  ProductDetailsPage,
+  LoginPageContainer
 };
