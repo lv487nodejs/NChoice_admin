@@ -37,7 +37,8 @@ export const config = {
       ['Users', routes.pathToUsers, PeopleAltIcon]
     ],
     routes,
-    serverUrl: 'http://localhost:5000/',
+    //serverUrl: 'http://localhost:5000/',
+    serverUrl: 'https://nchoicebe.azurewebsites.net/',
     drawerWidth: 220,
     snackBarDuration: 4000,
     rowsPerPageOptions: [10, 25, 50, 100]
